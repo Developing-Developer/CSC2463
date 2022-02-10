@@ -4,6 +4,7 @@ let canvasSizeY = canvasSizeX/2;
 let squareSize = canvasSizeX/40;
 const colors = [];
 let lineColor = ['red'];
+let lastX, lastY;
 
 function setup() {
     createCanvas(canvasSizeX, canvasSizeY);
@@ -20,13 +21,15 @@ function draw() {
     strokeWeight(2);
     square(0, i * squareSize, squareSize);
   }
-
+  
   // Draw on screen
   if (mouseIsPressed) {
     stroke(lineColor);
     strokeWeight(12.5);
-    line(mouseX, mouseY, mouseX, mouseY);
+    line(lastX, lastY, mouseX, mouseY);
   }
+  lastX = mouseX;
+  lastY = mouseY;
 }
 
 // Change brush to colors
