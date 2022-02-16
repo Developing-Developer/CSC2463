@@ -70,6 +70,7 @@ function draw() {
       gameState = "playing";
       speed = 1;
       score = 0;
+      frameSpeed = 15;
       setup();
     }
   }
