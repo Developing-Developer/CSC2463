@@ -69,7 +69,7 @@ function draw() {
     textAlign(CENTER, CENTER);
     textSize(14);
     text("Press numbers 1 - 6", 200, 200);
-    text("1 is pop bass", 200, 215);
+    text("1 is bass", 200, 215);
     text("2 - 6 is affected by vibrato", 200, 230);
     textAlign(LEFT, BOTTOM);
     text("Vibrato Adjustment", 0, 400);
