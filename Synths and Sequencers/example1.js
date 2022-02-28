@@ -23,7 +23,7 @@ let slider;
 // Load in Gain effect to destination then connect in sounds to Gain
 function preload() {
     gain = new Tone.Gain(1).toDestination();
-    gain1 = new Tone.Gain(.05).toDestination();
+    gain1 = new Tone.Gain(.04).toDestination();
     vibrado = new Tone.Vibrato("C4", 0).connect(gain1);
     // sounds.connect(gain);
 }
@@ -45,10 +45,10 @@ function setup() {
     simpSynth1 = new Tone.Synth({
         oscillator: {type: "square"},
         envelope: {
-            attack: .5,
+            attack: 0,
             decay: 0,
-            sustain: 1,
-            release: 1
+            sustain: 0.2,
+            release: 0
         }
     }).connect(vibrado);
 
@@ -66,8 +66,13 @@ function setup() {
 // Change Gain effect with slider
 function draw() {
     background(220);
-    text("Vibrato Adjustment", 0, 400);
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    text("Press numbers 1 - 6", 200, 200);
+    text("1 is pop bass", 200, 215);
+    text("2 - 6 is affected by vibrato", 200, 230);
     textAlign(LEFT, BOTTOM);
+    text("Vibrato Adjustment", 0, 400);
     vibrado.depth.value = slider.value();
     // gain.gain.value = slider.value();
 }
