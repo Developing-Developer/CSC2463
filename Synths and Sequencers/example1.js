@@ -1,37 +1,25 @@
-// Load sounds in
-// const sounds = new Tone.Players({
-//     boom: "boom.mp3",
-//     jump: "jump.mp3",
-//     gameover: "arcadegameover.wav",
-//     alarm: "retroalarm.wav",
-//     notification: "retronotification.wav"
-// });
-
-// Array of sound names
-// let soundsName = ['Boom', 'Jump', 'Game Over', 'Alarm', 'Notification'];
-
-// Variables
+// Synthesizers objects
 let simpSynth;
 let simpSynth1;
 
+// Sound effect variables
 let gain;
 let gain1;
 let vibrado;
-// let buttons = [];
 let slider;
 
-// Load in Gain effect to destination then connect in sounds to Gain
+// Load in gain effect to destination then connect vibrado to gain to control loudness
 function preload() {
     gain = new Tone.Gain(1).toDestination();
     gain1 = new Tone.Gain(.04).toDestination();
     vibrado = new Tone.Vibrato("C4", 0).connect(gain1);
-    // sounds.connect(gain);
 }
 
-// Create buttons with sound
+// Create synthesizers with different sounds
 function setup() {
     createCanvas(400, 400);
 
+    // base synth note
     simpSynth = new Tone.MembraneSynth({
         oscillator: {type: "triangle"},
         envelope: {
@@ -42,6 +30,7 @@ function setup() {
         }
     }).connect(gain);
 
+    // other sounds
     simpSynth1 = new Tone.Synth({
         oscillator: {type: "square"},
         envelope: {
@@ -54,16 +43,9 @@ function setup() {
 
 
     slider = createSlider(0,1,0,0.1);
-
-    // for (i = 0; i < 5; i++){
-    //     buttons[i] = createButton(soundsName[i]);
-    //     buttons[i].position(50, 50*(i+1));
-    //     let names = soundsName[i].replace(/\s/g, '').toLowerCase();
-    //     buttons[i].mousePressed( () => buttonSound(names) );
-    // }
 }
-// 1 222222 1 222222 1 878 222222 1 6545 8888887
-// Change Gain effect with slider
+
+// Add text and control vibrado effect with slider
 function draw() {
     background(220);
     textAlign(CENTER, CENTER);
@@ -74,37 +56,31 @@ function draw() {
     textAlign(LEFT, BOTTOM);
     text("Vibrato Adjustment", 0, 400);
     vibrado.depth.value = slider.value();
-    // gain.gain.value = slider.value();
 }
 
-// function mousePressed(){
-//     simpSynth.triggerAttackRelease("C2", duration = "0.1");
-//     simpSynth1.triggerAttackRelease("A4", "1", "+0.1");
-//     // simpSynth1.triggerAttackRelease("A2", "1", "+0.1");
-// }
-
 function keyPressed(){
+    // #1
     if (keyCode == 49){
         simpSynth.triggerAttackRelease("A0", 1);
     }
+    // #2
     else if (keyCode == 50){
-        simpSynth1.triggerAttackRelease("A1", 1);
+        simpSynth1.triggerAttackRelease("C1", 1);
     }
+    // #3
     else if (keyCode == 51){
         simpSynth1.triggerAttackRelease("A2", 1);
     }
+    // #4
     else if (keyCode == 52){
         simpSynth1.triggerAttackRelease("A3", 1);
     }
+    // #5
     else if (keyCode == 53){
         simpSynth1.triggerAttackRelease("A4", 1);
     }
+    // #6
     else if (keyCode == 54){
         simpSynth1.triggerAttackRelease("A5", 1);
     }
 }
-
-// Play sound from sounds object
-// function buttonSound(sound) {
-//     sounds.player(sound).start();
-// }
